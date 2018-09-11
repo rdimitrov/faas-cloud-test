@@ -7,3 +7,7 @@ functions:
     lang: go
     handler: ./helloworld
     image: rdimitrov/helloworld:latest
+  helloworld-py:
+    lang: python
+    handler: ./helloworld-py
+    image: rdimitrov/helloworld-py:latest
