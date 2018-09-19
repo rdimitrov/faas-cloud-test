@@ -11,3 +11,5 @@ functions:
     lang: python
     handler: ./helloworld-py
     image: rdimitrov/helloworld-py:latest
+    build_options:
+    - dev
