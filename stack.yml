@@ -13,3 +13,7 @@ functions:
     image: rdimitrov/helloworld-py:latest
     build_options:
     - dev
+  yell-dockerhub-image:
+    lang: go
+    handler: ./yell-dockerhub-image
+    image: rdimitrov/yell-dockerhub-image:latest
