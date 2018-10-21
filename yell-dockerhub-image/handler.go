@@ -1,9 +1,11 @@
 package function
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"math/rand"
+	"net/http"
 	"time"
 )
 
@@ -21,7 +23,11 @@ func Handle(req []byte) string {
 	repoName := mapRequest["repository"].(map[string]interface{})["repo_name"]
 	tag := mapRequest["push_data"].(map[string]interface{})["tag"]
 
-	return fmt.Sprintf("Thanks, %s! You successfully pushed to Docker Hub the following image - %s:%s! %s", pusher, repoName, tag, getEmoticons())
+	ret := fmt.Sprintf("Thanks, %s! You successfully pushed to Docker Hub the following image - %s:%s! %s", pusher, repoName, tag, getEmoticons())
+
+	testReply(ret)
+
+	return fmt.Sprintf(`{"text":"%s"}`, ret)
 }
 
 func getEmoticons() string {
@@ -35,4 +41,14 @@ func getEmoticons() string {
 		rStr = rStr + pool[i] + " "
 	}
 	return rStr
+}
+
+func testReply(s string) {
+	url := "https://webhook.site/aad552dc-fa1d-4464-b39b-0e62ff640532"
+	var jsonStr = []byte(fmt.Sprintf(`{"text":"%s"}`, s))
+	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	client.Do(req)
 }
