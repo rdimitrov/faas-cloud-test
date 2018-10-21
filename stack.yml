@@ -7,12 +7,12 @@ functions:
     lang: go
     handler: ./helloworld
     image: rdimitrov/helloworld:latest
-  helloworld-py:
-    lang: python
-    handler: ./helloworld-py
-    image: rdimitrov/helloworld-py:latest
-    build_options:
-    - dev
+#  helloworld-py:
+#    lang: python
+#    handler: ./helloworld-py
+#    image: rdimitrov/helloworld-py:latest
+#    build_options:
+#    - dev
   yell-dockerhub-image:
     lang: go
     handler: ./yell-dockerhub-image
