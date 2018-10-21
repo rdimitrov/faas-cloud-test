@@ -7,10 +7,10 @@ functions:
     lang: go
     handler: ./helloworld
     image: rdimitrov/helloworld:latest
-#  helloworld-py:
+#  qrcode-reader:
 #    lang: python
-#    handler: ./helloworld-py
-#    image: rdimitrov/helloworld-py:latest
+#    handler: ./qrcode-reader
+#    image: rdimitrov/qrcode-reader:latest
 #    build_options:
 #    - dev
   yell-dockerhub-image:
