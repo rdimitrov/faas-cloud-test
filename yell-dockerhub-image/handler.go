@@ -6,11 +6,19 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 )
 
 // Handle a serverless request
 func Handle(req []byte) string {
+	// Authorize request
+	if strings.Count(os.Getenv("Http_Query"), "=") != 1 ||
+		!(strings.Contains(os.Getenv("Http_Query"), "secret")) ||
+		(strings.Split(os.Getenv("Http_Query"), "=")[1] != "deepsecret") {
+		return fmt.Sprintf("Error: Unauthorized request.\n")
+	}
 
 	var mapRequest map[string]interface{}
 	err := json.Unmarshal(req, &mapRequest)
@@ -24,7 +32,7 @@ func Handle(req []byte) string {
 	tag := mapRequest["push_data"].(map[string]interface{})["tag"]
 
 	ret := fmt.Sprintf("Thanks, %s! You successfully pushed to Docker Hub the following image - %s:%s! %s", pusher, repoName, tag, getEmoticons())
-
+	// temporary
 	testReply(ret)
 
 	return fmt.Sprintf(`{"text":"%s"}`, ret)
