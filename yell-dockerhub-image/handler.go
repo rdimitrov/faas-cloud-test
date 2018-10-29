@@ -52,7 +52,8 @@ func getEmoticons() string {
 }
 
 func testReply(s string) {
-	url := "https://webhook.site/aad552dc-fa1d-4464-b39b-0e62ff640532"
+	// url := "https://webhook.site/aad552dc-fa1d-4464-b39b-0e62ff640532"
+	url := "https://hooks.slack.com/services/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"
 	var jsonStr = []byte(fmt.Sprintf(`{"text":"%s"}`, s))
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
